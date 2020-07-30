@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="A_Star_MVVM.SudokuBoard"
+﻿<UserControl x:Class="A_Star_MVVM.AStarBoard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:enum="clr-namespace:A_Star_MVVM.Model.Enums"
@@ -29,7 +29,7 @@
                                 </Setter>
                             </Style>
                         </ContextMenu.ItemContainerStyle>
-                        <ListBox BorderThickness="0" Width ="35" Margin ="0" SelectedItem ="{Binding Path=Value}" HorizontalAlignment ="Stretch" VerticalAlignment ="Stretch" DataContext ="{Binding RelativeSource={RelativeSource TemplatedParent},Path=DataContext}" ItemsSource="{Binding Path=PossibleValues}"/>
+                        <ListBox BorderThickness="0" Width ="35" Margin ="0" SelectedItem ="{Binding Path=NodeState}" HorizontalAlignment ="Stretch" VerticalAlignment ="Stretch" DataContext ="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DataContext}" ItemsSource="{Binding Path=PossibleValues}"/>
                     </ContextMenu>
                 </Border.ContextMenu>
             </Border>
@@ -69,7 +69,7 @@
 
         <DataTemplate x:Key ="InnerGridTemplate">
             <Border BorderBrush ="Black" BorderThickness ="1">
-                <ItemsControl ItemsSource ="{Binding Path=GridRows}" ItemTemplate="{StaticResource InnerGridRowTemplate}">
+                <ItemsControl ItemsSource ="{Binding Path=Nodes}" ItemTemplate="{StaticResource InnerGridRowTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Columns ="1"/>
@@ -90,7 +90,7 @@
         </DataTemplate>
 
     </UserControl.Resources>
-    <ItemsControl  ItemTemplate ="{StaticResource OuterRowTemplate}" ItemsSource ="{Binding Path=GridRows}" x:Name ="MainList">
+    <ItemsControl  ItemTemplate ="{StaticResource OuterRowTemplate}" ItemsSource ="{Binding Path=Nodes}" x:Name ="MainList">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <UniformGrid Columns ="1"/>

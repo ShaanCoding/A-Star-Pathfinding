@@ -8,6 +8,6 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <clr:SudokuBoard x:Name="Board" Padding="5, 5"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="27,63,0,0" VerticalAlignment="Top" Width="75" Command="{Binding simpleCommand}"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="707,389,0,0" VerticalAlignment="Top" Width="75" Command="{Binding simpleCommand}"/>
     </Grid>
 </Window>

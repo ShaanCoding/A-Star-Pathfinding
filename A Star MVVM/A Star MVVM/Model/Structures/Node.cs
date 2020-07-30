@@ -1,6 +1,7 @@
 ﻿using A_Star_MVVM.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace A_Star_MVVM.Model.Structures
         private double _gScore;
         private double _hScore;
         private EnumNodeState _nodeState;
+        private ObservableCollection<EnumNodeState> _possibleValues;
 
         public Node(int x, int y)
         {
@@ -25,6 +27,7 @@ namespace A_Star_MVVM.Model.Structures
             Y = y;
             Neighbours = new List<Node>();
             NodeState = EnumNodeState.Open;
+            _possibleValues = GeneratePossibleValues();
         }
 
         public Node(int x, int y, EnumNodeState nodeState)
@@ -33,6 +36,7 @@ namespace A_Star_MVVM.Model.Structures
             Y = y;
             Neighbours = new List<Node>();
             NodeState = nodeState;
+            _possibleValues = GeneratePossibleValues();
         }
 
         public int X
@@ -136,6 +140,27 @@ namespace A_Star_MVVM.Model.Structures
             {
                 _nodeState = (_nodeState == value) ? value : _nodeState;
                 OnPropertyChanged(nameof(NodeState));
+            }
+        }
+
+        public ObservableCollection<EnumNodeState> GeneratePossibleValues()
+        {
+            ObservableCollection<EnumNodeState> returnPossibleValues = new ObservableCollection<EnumNodeState>();
+            returnPossibleValues.Add(EnumNodeState.Barrier);
+            returnPossibleValues.Add(EnumNodeState.Closed);
+            returnPossibleValues.Add(EnumNodeState.EndNode);
+            returnPossibleValues.Add(EnumNodeState.Open);
+            returnPossibleValues.Add(EnumNodeState.Path);
+            returnPossibleValues.Add(EnumNodeState.StartNode);
+
+            return returnPossibleValues;
+        }
+
+        public ObservableCollection<EnumNodeState> PossibleValues
+        {
+            get
+            {
+                return _possibleValues;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using A_Star_MVVM.ViewModel.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace A_Star_MVVM
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ViewModelExample viewModel = new ViewModelExample();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

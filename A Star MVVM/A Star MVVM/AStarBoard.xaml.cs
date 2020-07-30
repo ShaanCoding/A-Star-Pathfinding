@@ -20,14 +20,14 @@ namespace A_Star_MVVM
     /// <summary>
     /// Interaction logic for SudokuBoard.xaml
     /// </summary>
-    public partial class SudokuBoard : UserControl
+    public partial class AStarBoard : UserControl
     {
-        private readonly ViewModelExample viewModel = new ViewModelExample();
-
-        public SudokuBoard()
+        Pathfinder pathfinder = new Pathfinder(12, 6);
+        public AStarBoard()
         {
             InitializeComponent();
-            MainList.DataContext = viewModel;
+
+            MainList.DataContext = pathfinder;
         }
     }
 }

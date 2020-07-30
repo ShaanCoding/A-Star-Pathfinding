@@ -21,6 +21,22 @@ namespace A_Star_MVVM.Model.Structures
         public const int SLEEP_TIME = 10;
         private ObservableCollection<ObservableCollection<Node>> _nodes;
 
+        public Pathfinder(int width, int height)
+        {
+            Nodes = new ObservableCollection<ObservableCollection<Node>>();
+
+            for (int i = 0; i < height; i++)
+            {
+                ObservableCollection<Node> Col = new ObservableCollection<Node>();
+                for (int j = 0; j < width; j++)
+                {
+                    Node c = new Node(i, j);
+                    Col.Add(c);
+                }
+                Nodes.Add(Col);
+            }
+        }
+
         public ObservableCollection<ObservableCollection<Node>> Nodes
         {
             get
@@ -34,33 +50,7 @@ namespace A_Star_MVVM.Model.Structures
             }
         }
 
-        public Pathfinder(int width, int height)
-        {
-            Nodes = new ObservableCollection<ObservableCollection<Node>>();
-
-            for (int i = 0; i < height; i++)
-            {
-                ObservableCollection<Node> Col = new ObservableCollection<Node>();
-                for (int j = 0; j < width; j++)
-                {
-                    Node c = new Node(i, j);
-                    c.PropertyChanged += new PropertyChangedEventHandler(C_PropertyChanged);
-                    Col.Add(c);
-                }
-                Nodes.Add(Col);
-            }
-        }
-
-        private void C_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "NodeState")
-            {
-                //We check nothing
-
-                //Update handler
-                //OnPropertyChanged(nameof());
-            }
-        }
+        #region PerformAStar
 
         public void Run(Node[,] nodeMap, bool enableDiagonals)
         {
@@ -267,6 +257,8 @@ namespace A_Star_MVVM.Model.Structures
         {
             return Math.Sqrt((neighbourNode.X - endNode.X) ^ 2 + (neighbourNode.Y - endNode.Y) ^ 2);
         }
+
+        #endregion
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

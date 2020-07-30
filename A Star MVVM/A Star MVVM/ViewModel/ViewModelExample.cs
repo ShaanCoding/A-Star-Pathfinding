@@ -43,7 +43,11 @@ namespace A_Star_MVVM.ViewModel.Commands
             nodeMap[8, 3].NodeState = EnumNodeState.Barrier;
             nodeMap[8, 4].NodeState = EnumNodeState.Barrier;
 
+            nodeMap[0, 4].NodeState = EnumNodeState.StartNode;
+            nodeMap[11, 1].NodeState = EnumNodeState.EndNode;
+
             //Not needed just graphic drawing of map
+            /*
             string[] map = new string[]
             {
                 "+------------+",
@@ -55,9 +59,7 @@ namespace A_Star_MVVM.ViewModel.Commands
                 "|            |",
                 "+------------+",
             };
-
-            nodeMap[0, 4].NodeState = EnumNodeState.StartNode;
-            nodeMap[11, 1].NodeState = EnumNodeState.EndNode;
+            */
 
             bool enableDiagonals = true;
             Pathfinder pathfinder = new Pathfinder(12, 6);
