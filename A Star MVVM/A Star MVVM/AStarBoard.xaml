@@ -88,8 +88,9 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </DataTemplate>
-
+        
     </UserControl.Resources>
+
     <ItemsControl  ItemTemplate ="{StaticResource OuterRowTemplate}" ItemsSource ="{Binding Path=Nodes}" x:Name ="MainList">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -97,4 +98,5 @@
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>
-    </UserControl>
+    
+</UserControl>
